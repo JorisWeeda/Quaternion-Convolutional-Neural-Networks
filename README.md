@@ -125,7 +125,21 @@ The created layer is more efficient and readable when compared to the layer avai
 
 
 ## Quaternion linear layer
+Just like as the quaternion convolutional layer, the quaternion-based linear layer acts as an essential element in a Quaternion Convolutional Neural Network (QCNN). The network is trained using the RMSprop optimizer and the cross-entropy loss function. The training loop performs forward and backward passes on batches of the data, updating the model’s parameters with the gradients computed during backpropagation.
 
+During the forward pass, the input tensor is passed through each layer of the network, with each layer linearly transforming the tensor based on its weights and biases. This transformation process diverges from traditional neural networks as it involves the multiplication of quaternion values instead of the dot product of real-valued vectors. The final output tensor is passed through the softmax activation function to produce the class probabilities.
+
+During the backward pass, the loss gradient is computed with respect to each parameter in the network using the chain rule of calculus. The optimizer then updates each parameter by subtracting the product of its gradient and the learning rate, which determines the size of the steps taken in the direction of the gradient.
+
+<br/>
+
+| **Training run** | **Epochs** | **Training time** | **Dataset** | **Accuracy** |
+|------------------|------------|-------------------|-------------|--------------|
+| 1                | 80         | 30min 58s         | CIFAR10     |    76.81%    |
+| 2                | 80         | 29min 47s         | CIFAR10     |    78.19%    |
+| 3                | 80         | 29min 47s         | CIFAR10     |    78.02%    |
+
+<br/>
 
 ## Different weight initialisation
 The GitHub repository provides a weight initialization code that differs from the initialization method proposed in the referenced paper. The paper proposes a weight initialization method, which was applied in the reproduction of both the linear and convolutional layers using the following code snippet:
@@ -157,7 +171,23 @@ The quaternion convolutional and linear layers were successfully replicated and 
 From these findings, we can infer that the paper's approach to QCNNs has potential, but the lack of detailed architectural information makes it challenging to directly replicate the results. The improved models with adapted architectures outperformed their counterparts, indicating that QCNNs may indeed offer advantages in color image processing tasks. However, the results of the shallow network experiments suggest that further investigation and optimization are needed to better understand the full potential of QCNNs.
 
 # Discussion
+In this discussion, we incorporate the findings from the experiments involving Quaternion Convolutional Neural Networks (QCNNs) and their shallow counterparts. The process included understanding the paper’s methodology, replicating the code, and conducting experiments to compare the performance of QCNNs with traditional Convolutional Neural Networks (CNNs). We also discuss the challenges faced during the replication process and the implications of the experimental results.
 
+**Key Takeaways**
+
+1. **Replicating the paper’s results:** Despite some challenges due to the absence of detailed architectural information for both CNN and QCNN models in the paper, we managed to replicate the results. The QCNN model outperformed the CNN model in the first experiment, achieving an accuracy of 77.05% compared to the CNN’s 75.83%.
+
+2. **Shallow network experiments:** When the complexity of the architecture was reduced to create a shallow network representation, the results were not as promising. The shallow CNN achieved an accuracy of 43.66%, while the shallow QCNN only reached 38.77%. This suggests that the shallow architecture may not be suitable for QCNNs and that further investigation and optimization are needed to uncover their full potential.
+
+3. **Reproduction of quaternion layers:** The quaternion convolutional and linear layers were successfully replicated and incorporated into the architecture. Three individual training runs for each layer confirmed their effectiveness, achieving accuracies between 76.81% and 78.19% for the linear layer and between 77.72% and 78.45% for the convolutional layer.
+
+4. **Weight initialization:** A discrepancy between the weight initialization code provided in the GitHub repository and the paper’s proposal was discovered. After adjusting the weight initialization to follow the paper’s recommendations, consistent results were obtained, emphasizing the importance of proper weight initialization for achieving optimal performance.
+
+5. **Challenges and limitations:** The replication process was hindered by the lack of detailed architectural information, making it challenging to directly replicate the results. Moreover, the results of the shallow network experiments suggest that further investigation and optimization are needed to better understand the full potential of QCNNs.
+
+Our attempts to reproduce the results of the Quaternion Convolutional Neural Networks paper and explore their performance in shallow network settings demonstrated the potential of QCNNs in color image processing tasks. However, the lack of detailed architectural information and the less promising results of the shallow network experiments highlight the need for further investigation and optimization.
+
+Future research could focus on exploring different architectures and optimization techniques to enhance the performance of QCNNs further. Additionally, investigating the applicability of QCNNs in other domains, such as video processing or 3D object recognition, could provide additional insights into the benefits of quaternion-based representations.
 
 # Appendix
 ## Quaternion convolution
@@ -250,32 +280,3 @@ $$
   {\pi}{3}).
 \end{align}
 $$
-
----
-
-## Task division
-
-<br/>
-
-| Task                                                         | Category             | Joris Weeda | Rami Awad | Mohammed Msallak |
-|--------------------------------------------------------------|----------------------|-------------|-----------|------------------|
-| Creating of CNN benchmark                                    | Reproduction results |             |     X     |                  |
-| Creating of QCNN                                             | Reproduction results |      X      |           |                  |
-| Creating shallow network versions                            | Reproduction results |      X      |           |                  |
-| Recreating quaternion convolutional layer                    | Reproduce code       |      X      |           |                  |
-| Recreating quaternion linear layer                           | Reproduce code       |      X      |           |         X        |
-| Creating and structuring GitHub                              | Organization         |      X      |           |                  |
-| Designing blog post layout                                   | Blog post            |      X      |     X     |                  |
-| Writing introduction                                         | Blog post            |             |     X     |                  |
-| Writing summary for blog post                                | Blog post            |             |     X     |                  |
-| Writing theory on QCNN and CNN                               | Blog post            |      X      |     X     |                  |
-| Writing reproduction of table 1                              | Blog post            |      X      |     X     |                  |
-| Writing results reproduction quaternion convolutional layer  | Blog post            |      X      |           |                  |
-| Writing results reproduction quaternion linear layer         | Blog post            |             |           |         X        |
-| Writing Conclusion                                           | Blog post            |             |     X     |                  |
-| Writing discussion                                           | Blog post            |             |           |         X        |
-
-<br/>
-
-
-
