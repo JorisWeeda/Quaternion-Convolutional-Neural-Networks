@@ -1,12 +1,6 @@
 # Reproduction of quaternion convolutional neural networks (QCNN)
 
-| **Name**         | **Student Number** |
-|------------------|--------------------|
-| Joris Weeda      | 5641551 |
-| Rami Awad        | 5416892 |
-| Mohammed Msallak | 5399920 |
-
-# Sources
+# Recommended sources
 
 Original paper:
 
@@ -155,7 +149,7 @@ As can be seen, this implementation does not match the earlier discussed initial
 
 <br/>
 
-![plot](./resources/img_initialisation_pytorch.png)
+![](./resources/img_initialisation_pytorch.png)
 
 _Figure 3: Weight initialisation following the paper and PyTorch utilities._
 
